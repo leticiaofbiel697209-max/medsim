@@ -1,0 +1,2 @@
+import{HistoryItem,Session}from'./types';const A='medsim.active.v1',H='medsim.history.v1';
+export const storage={load:():Session|null=>{try{return JSON.parse(localStorage.getItem(A)||'null')}catch{return null}},save:(s:Session|null)=>s?localStorage.setItem(A,JSON.stringify(s)):localStorage.removeItem(A),history:():HistoryItem[]=>{try{return JSON.parse(localStorage.getItem(H)||'[]')}catch{return[]}},push:(h:HistoryItem)=>localStorage.setItem(H,JSON.stringify([h,...storage.history()].slice(0,50)))};
